@@ -4,10 +4,13 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = pipelineParams
     body()
-    stage("build") {
+    stage("Checkout SCM") {
         node {
             checkout scm
-            sh "ls"
+        }
+    }
+    stage("build") {
+        node {
             sh "./gradlew clean build --stacktrace --info"
         }
     }
