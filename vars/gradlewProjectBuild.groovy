@@ -11,7 +11,12 @@ def call(body) {
     }
     stage("build") {
         node {
-            sh "./gradlew clean build --stacktrace --info"
+            sh "./gradlew clean build -x test"
+        }
+    }
+    stage("test") {
+        node {
+            sh "./gradlew test --info"
         }
     }
 }
