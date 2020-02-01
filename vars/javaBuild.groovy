@@ -19,4 +19,9 @@ def call(body) {
             sh "./gradlew test --info"
         }
     }
+    stage("upload Archives") {
+        node {
+            sh "./gradlew uploadArchives"
+        }
+    }
 }
