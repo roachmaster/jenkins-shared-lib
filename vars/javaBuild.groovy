@@ -22,7 +22,7 @@ def call(body) {
     stage("upload Archives") {
         node {
             withCredentials([usernamePassword(credentialsId: 'roachmaster-maven-repo', usernameVariable: 'user', passwordVariable: 'pass')]) {
-                sh './gradlew uploadArchives -PmavenUser=${user} -PmavenPassword=${pass}'
+                sh "./gradlew uploadArchives -PmavenUser=${user} -PmavenPassword=${pass}"
             }
         }
     }
