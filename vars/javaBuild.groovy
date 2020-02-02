@@ -21,8 +21,8 @@ def call(body) {
     }
     stage("upload Archives") {
         node {
-            withCredentials([usernamePassword(credentialsId: 'roachmaster-maven-repo', usernameVariable: 'user', passwordVariable: 'pass')]) {
-                sh "env ; ./gradlew uploadArchives -PmavenUser=${user} -PmavenPassword=${pass}"
+            withCredentials([usernamePassword(credentialsId: 'roachmaster-maven-repo', usernameVariable: 'mavenUser', passwordVariable: 'mavenPass')]) {
+                sh "env ; ./gradlew uploadArchives -PmavenUser=${mavenUser} -PmavenPassword=${mavenPass}"
             }
         }
     }
