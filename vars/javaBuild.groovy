@@ -1,8 +1,7 @@
-def call(body) {
+def call(config,body) {
     // evaluate the body block, and collect configuration into the object
-    def pipelineParams = [:]
     body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = pipelineParams
+    body.delegate = config
     body()
     def jenkinsWS = " -PjenkinsWorkspace=${this.env.WORKSPACE} "
     def jenkinsBuild = " -PjenkinsBuild=${this.env.BUILD_NUMBER} "
