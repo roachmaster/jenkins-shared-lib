@@ -23,7 +23,7 @@ def call(config,body) {
     }
     stage("Upload Archives") {
         node {
-            sh "env ;export GRADLE_USER_HOME='/var/lib/jenkins/.gradle'; ./gradlew uploadArchives --info ${jenkinsWS} ${jenkinsBuild}"
+            sh "./gradlew uploadArchives --info ${jenkinsWS} ${jenkinsBuild}"
         }
     }
 }
