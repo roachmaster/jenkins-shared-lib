@@ -4,8 +4,8 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = pipelineParams
     body()
-    def jenkinsWS = " -PjenkinsWorkspace=${env.WORKSPACE} "
-    def jenkinsBuild = " -PjenkinsBuild=${env.BUILD_NUMBER} "
+    def jenkinsWS = " -PjenkinsWorkspace=${this.env.WORKSPACE} "
+    def jenkinsBuild = " -PjenkinsBuild=${this.env.BUILD_NUMBER} "
     stage("Checkout SCM") {
         node {
             sh "echo ${jenkinsWS}"
