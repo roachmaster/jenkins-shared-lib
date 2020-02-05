@@ -4,6 +4,7 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = pipelineParams
     body()
+    sh "env"
     def jenkinsData = " -PjenkinsWorkspace=${WORKSPACE} -PjenkinsBuild=${BUILD_NUMBER}"
     stage("Checkout SCM") {
         node {
