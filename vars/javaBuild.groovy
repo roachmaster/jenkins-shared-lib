@@ -7,7 +7,7 @@ def call(body) {
     def jenkinsData = " -PjenkinsWorkspace=${env.PWD} -PjenkinsBuild=${env.BUILD_NUMBER}"
     stage("Checkout SCM") {
         node {
-            sh "echo ${env.PWD}"
+            sh "echo ${env.WORKSPACE}"
             sh "echo ${env.BUILD_NUMBER}"
             checkout scm
         }
