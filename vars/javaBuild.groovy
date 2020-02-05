@@ -3,6 +3,7 @@ def call(config,body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = config
     body()
+    env.WORKSPACE = sh(returnStdout: true, script: 'pwd').trim()
     def jenkinsWS = " -PjenkinsWorkspace=${this.env.WORKSPACE} "
     def jenkinsBuild = " -PjenkinsBuild=${this.env.BUILD_NUMBER} "
     stage("Checkout SCM") {
