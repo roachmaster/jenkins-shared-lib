@@ -4,6 +4,7 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = pipelineParams
     body()
+    def jenkinsData = " -PjenkinsWorkspace=${WORKSPACE} -PjenkinsBuild=${BUILD_NUMBER}"
     stage("Checkout SCM") {
         node {
             checkout scm
@@ -11,17 +12,17 @@ def call(body) {
     }
     stage("build") {
         node {
-            sh "./gradlew clean build -x test -PjenkinsWorkspace=${WORKSPACE}"
+            sh "./gradlew clean build -x test ${jenkinsData}"
         }
     }
     stage("test") {
         node {
-            sh "./gradlew test --info -PjenkinsWorkspace=${WORKSPACE}"
+            sh "./gradlew test --info ${jenkinsData}"
         }
     }
     stage("Upload Archives") {
         node {
-            sh "env ;export GRADLE_USER_HOME='/var/lib/jenkins/.gradle'; ./gradlew uploadArchives --info -PjenkinsWorkspace=${WORKSPACE}"
+            sh "env ;export GRADLE_USER_HOME='/var/lib/jenkins/.gradle'; ./gradlew uploadArchives --info ${jenkinsData}"
         }
     }
 }
