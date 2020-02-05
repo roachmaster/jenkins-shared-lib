@@ -4,13 +4,13 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = pipelineParams
     body()
+    def jenkinsData = " -PjenkinsWorkspace=${env.PWD} -PjenkinsBuild=${env.BUILD_NUMBER}"
     stage("Checkout SCM") {
         node {
             sh "env"
             checkout scm
         }
     }
-    def jenkinsData = " -PjenkinsWorkspace=${env.WORKSPACE} -PjenkinsBuild=${env.BUILD_NUMBER}"
     stage("build") {
         node {
             sh "./gradlew clean build -x test ${jenkinsData}"
