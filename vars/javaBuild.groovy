@@ -10,7 +10,7 @@ def call(body) {
             checkout scm
         }
     }
-    def jenkinsData = " -PjenkinsWorkspace=${WORKSPACE} -PjenkinsBuild=${BUILD_NUMBER}"
+    def jenkinsData = " -PjenkinsWorkspace=${env.WORKSPACE} -PjenkinsBuild=${env.BUILD_NUMBER}"
     stage("build") {
         node {
             sh "./gradlew clean build -x test ${jenkinsData}"
