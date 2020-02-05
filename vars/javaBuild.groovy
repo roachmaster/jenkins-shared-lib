@@ -7,7 +7,8 @@ def call(body) {
     def jenkinsData = " -PjenkinsWorkspace=${env.PWD} -PjenkinsBuild=${env.BUILD_NUMBER}"
     stage("Checkout SCM") {
         node {
-            sh "env"
+            sh "echo ${env.PWD}"
+            sh "echo ${env.BUILD_NUMBER}"
             checkout scm
         }
     }
@@ -23,7 +24,7 @@ def call(body) {
     }
     stage("Upload Archives") {
         node {
-            sh "env ;export GRADLE_USER_HOME='/var/lib/jenkins/.gradle'; ./gradlew uploadArchives --info ${jenkinsData}"
+            //sh "env ;export GRADLE_USER_HOME='/var/lib/jenkins/.gradle'; ./gradlew uploadArchives --info ${jenkinsData}"
         }
     }
 }
