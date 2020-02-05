@@ -11,17 +11,17 @@ def call(body) {
     }
     stage("build") {
         node {
-            sh "./gradlew clean build -x test"
+            sh "./gradlew clean build -x test -PjenkinsWorkspace=${WORKSPACE}"
         }
     }
     stage("test") {
         node {
-            sh "./gradlew test --info"
+            sh "./gradlew test --info -PjenkinsWorkspace=${WORKSPACE}"
         }
     }
-    stage("upload Archives") {
+    stage("Upload Archives") {
         node {
-            sh "env ;export GRADLE_USER_HOME='/var/lib/jenkins/.gradle'; ./gradlew uploadArchives  --info"
+            sh "env ;export GRADLE_USER_HOME='/var/lib/jenkins/.gradle'; ./gradlew uploadArchives --info -PjenkinsWorkspace=${WORKSPACE}"
         }
     }
 }
