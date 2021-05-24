@@ -1,3 +1,6 @@
 def call(Map config) {
-   sh "ls ${config.name}" 
+   sh "cd ${config.name}" 
+   sh "./gradlew clean build"
+   sh "cd ../" 
+   sh "pwd"
 }
