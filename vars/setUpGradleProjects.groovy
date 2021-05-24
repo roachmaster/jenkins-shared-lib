@@ -1,4 +1,4 @@
-def call(Map config) {
+def call() {
     stage("Setting Up Gradle Environment") {
         node {
            checkout scm
