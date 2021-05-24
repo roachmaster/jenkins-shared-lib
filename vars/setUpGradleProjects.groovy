@@ -1,4 +1,4 @@
-def call() {
+def call(Map config) {
     checkout scm
     sh "ls" 
     sh "chmod +x ./scripts/*"
