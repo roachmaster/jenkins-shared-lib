@@ -5,21 +5,7 @@ def call(Map config) {
            sh "ls" 
            sh "chmod +x ./scripts/*"
            sh "./scripts/setUpGradleProjects.sh"
-        }
-    }/*
-    stage("build") {
-        node {
-            sh "./gradlew clean build -x test ${jenkinsWS} ${jenkinsBuild}"
+           println "done"
         }
     }
-    stage("test") {
-        node {
-            sh "./gradlew test --info ${jenkinsWS} ${jenkinsBuild}"
-        }
-    }
-    stage("Upload Archives") {
-        node {
-            sh "./gradlew uploadArchives --info ${jenkinsWS} ${jenkinsBuild}"
-        }
-    }*/
 }
