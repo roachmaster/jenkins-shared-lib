@@ -3,7 +3,7 @@ def call(Map config) {
         node {
            checkout scm
            sh "ls" 
-           sh "chmod +x ./scripts/setUpGradleProjects.sh"
+           sh "chmod +x ./scripts/*"
            sh "./scripts/setUpGradleProjects.sh"
         }
     }/*
